@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import import 'admin_dashboard.dart';
+import 'admin_dashboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
