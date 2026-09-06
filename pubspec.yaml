@@ -1,23 +1,42 @@
-name: sl_iq_test_earn_bd
-description: "A new Flutter project for Quiz to Earn."
-publish_to: 'none'
+name: Build Flutter APK
 
-version: 1.0.0+1
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
-environment:
-  sdk: '>=3.0.0 <4.0.0'
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-dependencies:
-  flutter:
-    sdk: flutter
-  cloud_firestore: ^4.15.5
-  firebase_core: ^2.27.0
-  cupertino_icons: ^1.0.6
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^3.0.0
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
 
-flutter:
-  uses-material-design: true
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0'
+          channel: 'stable'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release --no-tree-shake-icons
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
