@@ -1,18 +1,30 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyC-WrvmSmGD5tVqKJkOgLKggyxMIzbQogA",
-  authDomain: "sl-iq-test-earn-bd.firebaseapp.com",
-  databaseURL: "https://sl-iq-test-earn-bd-default-rtdb.firebaseio.com",
-  projectId: "sl-iq-test-earn-bd",
-  storageBucket: "sl-iq-test-earn-bd.firebasestorage.app",
-  messagingSenderId: "119013336268",
-  appId: "1:119013336268:web:4285cbffd050467c640e69"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+{
+  "project_info": {
+    "project_number": "119013336268",
+    "firebase_url": "https://sl-iq-test-earn-bd-default-rtdb.firebaseio.com",
+    "project_id": "sl-iq-test-earn-bd",
+    "storage_bucket": "sl-iq-test-earn-bd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119013336268:android:c4c8c5043c00afdb640e69",
+        "android_client_info": {
+          "package_name": "com.siyam.slearnbd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcGkeIBaUFX596yG0fePIHgyVE-Abqpo0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
