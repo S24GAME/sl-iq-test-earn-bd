@@ -3,8 +3,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'admin_dashboard.dart';
 
 void main() async {
+  // ১. ফ্ল্যাটার উইজেট মেমোরি ঠিকমতো ইনিশিয়ালাইজ করা
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+
+  // ২. Safe Firebase Initialization (যদি কোনো কারণে ফেল করে অ্যাপ যেন ক্র্যাশ বা ফ্রিজ না হয়)
+  try {
+    await Firebase.initializeApp();
+  } catch (e) {
+    debugPrint('Firebase Initialization Error: $e');
+  }
+
   runApp(const MyApp());
 }
 
@@ -17,55 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'SL IQ Test Earn BD',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
-      home: const HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('SL IQ Test Earn BD'),
-        backgroundColor: Colors.deepPurple,
-        foregroundColor: Colors.white,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'স্বাগতম!',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 30),
-            
-            // অ্যাডমিন প্যানেল বাটন
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.deepPurple,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              ),
-              icon: const Icon(Icons.admin_panel_settings),
-              label: const Text('Admin Panel', style: TextStyle(fontSize: 16)),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AdminDashboardScreen(),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      home: const AdminDashboard(), // আপনার মূল স্ক্রিন বা ড্যাশবোর্ড
     );
   }
 }
